@@ -15,7 +15,7 @@
       games.pop()
       let gamesJson = games.map(game => JSON.parse(game))
       console.log(gamesJson)
-      document.getElementById("show").innerHTML = "<pre>" + gamesJson.map(json => JSON.stringify(json, null, 2)).join("\n") + "</pre>"
+      document.getElementById("show").innerHTML = "<pre>" + JSON.stringify(gamesJson, null, 2) + "</pre>"
     },
       err => console.log("problem with getting response text", err)                                                                                          
   ),
