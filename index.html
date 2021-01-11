@@ -1,18 +1,25 @@
 <div id="show"></div>
+
 <script>
-let m = document.location.href.match(/username=(.*)$/)
-let username = m ? m[1] : "thibault"
-let url = `https://lichess.org/api/games/user/${username}?max=10`
-console.log("fetching", url)
-fetch(url, {headers: {Accept: "application/x-ndjson"}}).then(response => response.text().then(ndjson => {  
-  let games = ndjson.split("\n")
-  games.pop()
-  let gamesJson = games.map(game => JSON.parse(game))
-  console.log(gamesJson)
-  document.getElementById("show").innerHTML = "<pre>" + gamesJson.map(json => JSON.stringify(json, null, 2)).join("\n") + "</pre>"
-},
-err => console.log("json error", err)                                                                                          
-),
-err => console.log("fetch error", err)                                                                                          
-)
+  
+  let m = document.location.href.match(/username=(.*)$/)
+
+  let username = m ? m[1] : "thibault"
+
+  let url = `https://lichess.org/api/games/user/${username}?max=10`
+
+  console.log("fetching", url)
+
+  fetch(url, {headers: {Accept: "application/x-ndjson"}}).then(response => response.text().then(ndjson => {  
+      let games = ndjson.split("\n")
+      games.pop()
+      let gamesJson = games.map(game => JSON.parse(game))
+      console.log(gamesJson)
+      document.getElementById("show").innerHTML = "<pre>" + gamesJson.map(json => JSON.stringify(json, null, 2)).join("\n") + "</pre>"
+    },
+      err => console.log("problem with getting response text", err)                                                                                          
+  ),
+    err => console.log("fetch error", err)                                                                                          
+  )
+
 </script>
