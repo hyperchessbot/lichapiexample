@@ -2,7 +2,13 @@
 <script>
 let m = document.location.href.match(/username=(.*)$/)
 let username = m ? m[1] : "chesshyperbot"
-fetch(`https://lichess.org/api/games/user/${username}`, {headers: {Accept: "application/json"}}).then(response => response.json().then(json => {
+let url = `https://lichess.org/api/games/user/${username}`
+console.log("fetching", url)
+fetch(url, {headers: {Accept: "application/json"}}).then(response => response.json().then(json => {
   document.getElementById("show").innerHTML = "<pre>" + JSON.stringify(json, null, 2) + "</pre>"
-}))
+},
+err => console.log("json error", err)                                                                                          
+),
+err => console.log("fetch error", err)                                                                                          
+)
 </script>
