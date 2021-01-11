@@ -1,0 +1,8 @@
+<div id="show"></div>
+<script>
+let m = document.location.href.match/username=(.*)$/
+let username = m ? m[1] : "chesshyperbot"
+fetch(`https://lichess.org/api/games/user/${username}`).then(response => response.json().then(json => {
+  document.getElementById("show").innerHTML = "<pre>" + JSON.stringify(json, null, 2) + "</pre>"
+}))
+</script>
