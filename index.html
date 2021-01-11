@@ -4,8 +4,8 @@ let m = document.location.href.match(/username=(.*)$/)
 let username = m ? m[1] : "chesshyperbot"
 let url = `https://lichess.org/api/games/user/${username}?max=10`
 console.log("fetching", url)
-fetch(url, {headers: {Accept: "application/json"}}).then(response => response.json().then(json => {
-  document.getElementById("show").innerHTML = "<pre>" + JSON.stringify(json, null, 2) + "</pre>"
+fetch(url, {headers: {Accept: "application/json"}}).then(response => response.text().then(json => {
+  document.getElementById("show").innerHTML = "<pre>" + /*JSON.stringify(json, null, 2)*/json + "</pre>"
 },
 err => console.log("json error", err)                                                                                          
 ),
